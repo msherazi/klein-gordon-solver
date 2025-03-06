@@ -32,10 +32,20 @@ void initial_conditions(std::vector<double>& phi, std::vector<double>& prev_phi)
 
 void time_evolution(std::vector<double>& phi, std::vector<double>& prev_phi, std::vector<double>& new_phi)
 {   
+    //computes the next time step for each field point excluding the boundaries to enforce periodic boundary conditions
     for(int i = 1; i < N_x - 1; i++)
     {
-        double laplacian = (phi[i + 1] - (2.0 * phi[i]) + phi[i - 1])/(dx*dx);
-        new_phi[i] = 2.0 * phi[i] - prev_phi[i] + (dt * dt) * (laplacian - (m * m) * phi[i]);
+        double laplacian = (phi[i - 1] - (2.0 * phi[i]) + phi[i + 1])/(dx * dx); //computes the approximate laplacian given by the finite difference method
+        new_phi[i] = 2.0 * phi[i] - prev_phi[i] + (dt * dt) * (laplacian - (m * m) * phi[i]); //next field point calculation
     }
 
+    //since we want to enforce periodic boundary conditions it is necessary to make sure the edges of the field wrap around
+    new_phi[0] = new_phi[N_x - 2];
+    new_phi[N_x - 1] = new_phi[1]; 
+
+    //after one time step the previous field becomes the "current" one and the "current" one becomes the one that was calculated in this function
+    prev_phi = phi;
+    phi = new_phi;
+
 }
+
