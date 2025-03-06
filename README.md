@@ -6,9 +6,11 @@ klein_gordon.cpp generates .dat files which contain position and field values wh
 
 ![spatial](./img/klein_gordon_wave_propagation.png)
 
-
+![initialvsfinal](./img/klein_gordon_wave_propagation_initial_final.png)
 
 heatmap_program.py displays the time evolution of the scalar field in the form of a heatmap. 
+
+![heatmap](./img/klein_gordon_heatmap.png)
 
 Physically, this simulation can represent a free scalar (spin-0) bosonic field, as well as classical wave propagation in relativistic systems. With mass set to 0.0 (m = 0) the Klein-Gordon equation reduces to the electromagnetic wave equation, which is shown by the non-oscillatory behavior shown in the plots for this case. 
 
