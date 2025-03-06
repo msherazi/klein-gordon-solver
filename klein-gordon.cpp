@@ -14,7 +14,7 @@ const double dx = domain_size/N_x; //distance between grid points on the physica
 const double dt = 0.9 * dx; //time step 
 
 //since we're working in natural units, c = h_bar = 1, so the only numerical value in the Klein-Gordon equation we need to worry about is mass
-const double m = 1.0; //mass
+const double m = 5.0; //mass
 
 //Gaussian parameters
 const double A = 1.0; //amplitude of wave packet
@@ -78,8 +78,8 @@ int main()
         time_step_evolution(phi, prev_phi, new_phi);
         std::cout << "completed step" << step << "\n";
 
-        //writes data for each step that is steps_per_data_write steps away from the previous data write
-        if(step % steps_per_data_write == 0)
+        //writes data for each step that is steps_per_data_write steps away from the previous data write, as well as the last step
+        if(step % steps_per_data_write == 0 || step == N_steps - 1)
         {
             write_data(phi, step);
             std::cout << "wrote data for step" << step << "\n";
