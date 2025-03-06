@@ -6,21 +6,24 @@
 
 //simulation parameters
 const int N_x = 100; //how many points there are on the 1D grid
+const int N_steps = 500; //amount of time steps in the simulation
+const int steps_per_data_write = 50; //amount of steps transpiring per each time the data is saved
+
 const double domain_size = 10.0; //size of the physical domain
 const double dx = domain_size/N_x; //distance between grid points on the physical domain (spatial step size)
-const double dt = 0.9 * dx;
+const double dt = 0.9 * dx; //time step 
 
-//since we're working in natural units, c = h_bar = 1, so the only numerical value we need to worry about is mass
+//since we're working in natural units, c = h_bar = 1, so the only numerical value in the Klein-Gordon equation we need to worry about is mass
 const double m = 1.0; //mass
 
-//gaussian parameters
+//Gaussian parameters
 const double A = 1.0; //amplitude of wave packet
 const double x_0 = domain_size/2.0; //initial position of the wave packet, initialized to center of domain
-const double sigma = 0.5;  //gaussian width 
+const double sigma = 0.5;  //Gaussian width 
 const double k = 3.0; //wave number
 
 
-void initial_conditions(std::vector<double>& phi, std::vector<double>& prev_phi)
+void set_initial_conditions(std::vector<double>& phi, std::vector<double>& prev_phi)
 {
     for(int i = 0; i < N_x; i++)
     {
@@ -30,7 +33,7 @@ void initial_conditions(std::vector<double>& phi, std::vector<double>& prev_phi)
     }
 }
 
-void time_evolution(std::vector<double>& phi, std::vector<double>& prev_phi, std::vector<double>& new_phi)
+void time_step_evolution(std::vector<double>& phi, std::vector<double>& prev_phi, std::vector<double>& new_phi)
 {   
     //computes the next time step for each field point excluding the boundaries to enforce periodic boundary conditions
     for(int i = 1; i < N_x - 1; i++)
@@ -61,8 +64,26 @@ void write_data(const std::vector<double>& phi, int step)
 
 int main() 
 {
+    //field arrays 
     std::vector<double> prev_phi(N_x, 0.0);
     std::vector<double> phi(N_x, 0.0);
     std::vector<double> new_phi(N_x, 0.0);
+
+    //sets initial conditions 
+    set_initial_conditions(phi, prev_phi);
+
+    //time evolution loop
+    for(int step = 0; step < N_steps; step++)
+    {
+        time_step_evolution(phi, prev_phi, new_phi);
+        std::cout << "completed step" << step << "\n";
+
+        //writes data for each step that is steps_per_data_write steps away from the previous data write
+        if(step % steps_per_data_write == 0)
+        {
+            write_data(phi, step);
+            std::cout << "wrote data for step" << step << "\n";
+        }
+    }
 }
 
