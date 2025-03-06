@@ -5,7 +5,7 @@
 #include <string>
 
 //simulation parameters
-const int N_x = 100; //how many points there are on the 1D grid
+const int N_x = 500; //how many points there are on the 1D grid
 const int N_steps = 500; //amount of time steps in the simulation
 const int steps_per_data_write = 50; //amount of steps transpiring per each time the data is saved
 
