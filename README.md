@@ -1,4 +1,4 @@
-# klein-gordon-fdm
+# klein-gordon-solver
  
 This is a C++ program which solves the 1-D Klein-Gordon equation using a finite difference leapfrog method to simulate the evolution of a scalar field with Gaussian initial conditions and periodic boundary conditions.
 
