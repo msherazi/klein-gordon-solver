@@ -30,7 +30,12 @@ void initial_conditions(std::vector<double>& phi, std::vector<double>& prev_phi)
     }
 }
 
-void time_evolution(std::vector<double>& phi, std::vector<double>& prev_phi, std::vector<double>& prev_new)
-{
+void time_evolution(std::vector<double>& phi, std::vector<double>& prev_phi, std::vector<double>& new_phi)
+{   
+    for(int i = 1; i < N_x - 1; i++)
+    {
+        double laplacian = (phi[i + 1] - (2.0 * phi[i]) + phi[i - 1])/(dx*dx);
+        new_phi[i] = 2.0 * phi[i] - prev_phi[i] + (dt * dt) * (laplacian - (m * m) * phi[i]);
+    }
 
 }
