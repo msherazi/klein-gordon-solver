@@ -49,3 +49,20 @@ void time_evolution(std::vector<double>& phi, std::vector<double>& prev_phi, std
 
 }
 
+void write_data(const std::vector<double>& phi, int step) 
+{
+    std::ofstream file("klein_gordon_output_" + std::to_string(step) + ".dat");
+    for (int i = 0; i < N_x; i++) 
+    {
+        file << i * dx << " " << phi[i] << "\n";
+    }
+    file.close();
+}
+
+int main() 
+{
+    std::vector<double> prev_phi(N_x, 0.0);
+    std::vector<double> phi(N_x, 0.0);
+    std::vector<double> new_phi(N_x, 0.0);
+}
+
