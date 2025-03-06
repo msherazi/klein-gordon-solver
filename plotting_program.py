@@ -30,10 +30,10 @@ plt.show()
 plt.figure(figsize=(10, 5))
 
 x_init, phi_init = load_data(file_list[0])
-plt.plot(x_init, phi_init, label="Step 0", linewidth=2)
+plt.plot(x_init, phi_init, label="Step 0", linewidth=2, color = "lightgreen")
 
 x_final, phi_final = load_data(file_list[-1])
-plt.plot(x_final, phi_final, label=f"Step {file_list[-1].split('_')[-1].split('.')[0]}", linewidth=2)
+plt.plot(x_final, phi_final, label=f"Step {file_list[-1].split('_')[-1].split('.')[0]}", linewidth=2, color = "lightblue")
 
 plt.xlabel("$x$")
 plt.ylabel("φ(x, t)")
