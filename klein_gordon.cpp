@@ -14,7 +14,7 @@ const double dx = domain_size/N_x; //distance between grid points on the physica
 const double dt = 0.9 * dx; //time step 
 
 //since we're working in natural units, c = h_bar = 1, so the only numerical value in the Klein-Gordon equation we need to worry about is mass
-const double m = 1.0; //mass
+const double m = 5.0; //mass
 
 //Gaussian parameters
 const double A = 1.0; //amplitude of wave packet

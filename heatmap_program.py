@@ -27,4 +27,6 @@ plt.colorbar(label="φ(x, t)")
 plt.xlabel("$x$")
 plt.ylabel("$t$")
 plt.title("Time Evolution of φ(x, t)")
+
+plt.savefig("klein_gordon_heatmap.png")
 plt.show()

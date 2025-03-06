@@ -20,10 +20,11 @@ for file in file_list:
     plt.plot(x, phi, alpha=0.5, label=f"Step {step}")
 
 plt.xlabel("$x$")
-plt.ylabel("φ(x,t)")
+plt.ylabel("φ(x, t)")
 plt.title("Klein-Gordon Wave Propagation")
 plt.legend(fontsize=8, loc="upper right", ncol=2)
 plt.grid(True)
+plt.savefig("klein_gordon_wave_propagation.png")
 plt.show()
 
 plt.figure(figsize=(10, 5))
@@ -39,4 +40,8 @@ plt.ylabel("φ(x, t)")
 plt.title("Klein-Gordon Wave Propagation (Initial & Final Steps)")
 plt.legend()
 plt.grid(True)
+
+plt.savefig("klein_gordon_wave_propagation_initial_final.png")
 plt.show()
+
+
